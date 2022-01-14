@@ -1,8 +1,8 @@
 let mut › let-mut4
 (module
  (type $i32_i32_=>_i32 (func (param i32 i32) (result i32)))
- (type $none_=>_none (func))
  (type $none_=>_i32 (func (result i32)))
+ (type $none_=>_none (func))
  (import \"_grainEnv\" \"mem\" (memory $0 0))
  (import \"_grainEnv\" \"relocBase\" (global $wimport__grainEnv_relocBase i32))
  (import \"GRAIN$MODULE$runtime/gc\" \"GRAIN$EXPORT$incRef\" (global $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$incRef (mut i32)))
@@ -18,49 +18,45 @@ let mut › let-mut4
   (local $0 i32)
   (local $1 i32)
   (local $2 i32)
+  (local.set $0
+   (tuple.extract 0
+    (tuple.make
+     (i32.const 9)
+     (call $wimport_GRAIN$MODULE$runtime/gc_decRefIgnoreZeros
+      (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$decRefIgnoreZeros)
+      (i32.const 0)
+     )
+    )
+   )
+  )
+  (local.set $0
+   (tuple.extract 0
+    (tuple.make
+     (i32.const 7)
+     (call $wimport_GRAIN$MODULE$runtime/gc_decRefIgnoreZeros
+      (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$decRefIgnoreZeros)
+      (local.get $0)
+     )
+    )
+   )
+  )
+  (local.set $1
+   (tuple.extract 0
+    (tuple.make
+     (i32.const 1879048190)
+     (call $wimport_GRAIN$MODULE$runtime/gc_decRefIgnoreZeros
+      (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$decRefIgnoreZeros)
+      (i32.const 0)
+     )
+    )
+   )
+  )
   (local.set $2
    (tuple.extract 0
     (tuple.make
-     (block (result i32)
-      (local.set $0
-       (tuple.extract 0
-        (tuple.make
-         (i32.const 9)
-         (call $wimport_GRAIN$MODULE$runtime/gc_decRefIgnoreZeros
-          (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$decRefIgnoreZeros)
-          (i32.const 0)
-         )
-        )
-       )
-      )
-      (local.set $1
-       (tuple.extract 0
-        (tuple.make
-         (block (result i32)
-          (local.set $0
-           (tuple.extract 0
-            (tuple.make
-             (i32.const 7)
-             (call $wimport_GRAIN$MODULE$runtime/gc_decRefIgnoreZeros
-              (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$decRefIgnoreZeros)
-              (local.get $0)
-             )
-            )
-           )
-          )
-          (i32.const 1879048190)
-         )
-         (call $wimport_GRAIN$MODULE$runtime/gc_decRefIgnoreZeros
-          (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$decRefIgnoreZeros)
-          (i32.const 0)
-         )
-        )
-       )
-      )
-      (call $wimport_GRAIN$MODULE$runtime/gc_incRef
-       (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$incRef)
-       (local.get $0)
-      )
+     (call $wimport_GRAIN$MODULE$runtime/gc_incRef
+      (global.get $wimport_GRAIN$MODULE$runtime/gc_GRAIN$EXPORT$incRef)
+      (local.get $0)
      )
      (i32.const 0)
     )

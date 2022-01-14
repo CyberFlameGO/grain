@@ -1,7 +1,7 @@
 basic functionality › int64_1
 (module
- (type $none_=>_none (func))
  (type $none_=>_i32 (func (result i32)))
+ (type $none_=>_none (func))
  (type $i32_i64_=>_i32 (func (param i32 i64) (result i32)))
  (import \"_grainEnv\" \"mem\" (memory $0 0))
  (import \"_grainEnv\" \"relocBase\" (global $wimport__grainEnv_relocBase i32))
