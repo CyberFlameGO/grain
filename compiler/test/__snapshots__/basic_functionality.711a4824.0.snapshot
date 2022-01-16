@@ -42,7 +42,7 @@ basic functionality › pattern_match_unsafe_wasm
             )
            )
           )
-          (i32.const 7)
+          (i32.const 6)
          )
          (i32.store offset=4
           (local.get $1)
@@ -465,7 +465,7 @@ basic functionality › pattern_match_unsafe_wasm
                  )
                 )
                )
-               (i32.const 7)
+               (i32.const 6)
               )
               (i32.store offset=4
                (local.get $0)
