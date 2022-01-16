@@ -1771,38 +1771,16 @@ let allocate_bytes = (wasm_mod, env, bytes) => {
   );
 };
 
-let allocate_char = (wasm_mod, env, char) => {
-  // Copy bytes into a fresh buffer so we can guarantee a copy of a full word
-  let bytes = Bytes.make(4, Char.chr(0));
-  // OCaml String#length is byte length, not Unicode character length
-  // Guaranteed not to be longer than 4 bytes by well-formedness
-  Bytes.blit_string(char, 0, bytes, 0, String.length(char));
-  let value = Bytes.get_int32_le(bytes, 0);
-
-  let get_swap = () => get_swap(wasm_mod, env, 0);
-  let tee_swap = tee_swap(wasm_mod, env, 0);
-  Expression.Block.make(
-    wasm_mod,
-    gensym_label("allocate_char"),
-    [
-      store(
-        ~offset=0,
-        wasm_mod,
-        tee_swap(heap_allocate(wasm_mod, env, 2)),
-        Expression.Const.make(
-          wasm_mod,
-          const_int32(tag_val_of_heap_tag_type(CharType)),
-        ),
-      ),
-      store(
-        ~offset=4,
-        wasm_mod,
-        get_swap(),
-        Expression.Const.make(wasm_mod, wrap_int32(value)),
-      ),
-      get_swap(),
-    ],
-  );
+let create_char = (wasm_mod, env, char) => {
+  let uchar = List.hd @@ Utf8.decodeUtf8String(char);
+  // There appears to be an issue with the distribution of the Utf8 lib that
+  // doesn't include its Uchar implementation, and the Uchar type exposed by
+  // the Utf8 module is incompatible with Stdlib.Uchar. The Uchar type is
+  // implemented as a plain int, so we do an unsafe cast. This avoids us
+  // having to reimplement a UTF8 -> int conversion.
+  let uchar_int: int = Obj.magic(uchar);
+  let grain_char = uchar_int lsl 3 lor 0b010;
+  Expression.Const.make(wasm_mod, const_int32(grain_char));
 };
 
 let allocate_float32 = (wasm_mod, env, i) => {
@@ -2508,7 +2486,7 @@ let compile_allocation = (wasm_mod, env, alloc_type) =>
   | MRecord(ttag, elts) => allocate_record(wasm_mod, env, ttag, elts)
   | MBytes(bytes) => allocate_bytes(wasm_mod, env, bytes)
   | MString(str) => allocate_string(wasm_mod, env, str)
-  | MChar(char) => allocate_char(wasm_mod, env, char)
+  | MChar(char) => create_char(wasm_mod, env, char)
   | MADT(ttag, vtag, elts) => allocate_adt(wasm_mod, env, ttag, vtag, elts)
   | MInt32(i) =>
     allocate_int32(
