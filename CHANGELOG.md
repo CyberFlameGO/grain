@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/grain-lang/grain/compare/grain-v0.4.7...grain-v0.5.0) (2022-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **graindoc:** Add `--current-version` flag, required for since/history attributes (#1116)
+* **compiler:** Remove decRefIgnoreZeros (#1068)
+* **compiler:** Add `--memory-base` flag (#1115)
+* **compiler:** Re-implement Grain parser (#1033)
+
+### Features
+
+* **compiler:** Add `--memory-base` flag ([#1115](https://www.github.com/grain-lang/grain/issues/1115)) ([0680826](https://www.github.com/grain-lang/grain/commit/068082663c4387c3ab54c052869e9b9a06b87e26))
+* **compiler:** Re-implement Grain parser ([#1033](https://www.github.com/grain-lang/grain/issues/1033)) ([9dc3c96](https://www.github.com/grain-lang/grain/commit/9dc3c96f87a0b2affe9db36e1b03360d198f79f1))
+* **compiler:** Use symbol for equals sign ([#1128](https://www.github.com/grain-lang/grain/issues/1128)) ([3d7fc57](https://www.github.com/grain-lang/grain/commit/3d7fc5742ad3016d60e14112fdd68de02fc147f1))
+* **graindoc:** Add `--current-version` flag, required for since/history attributes ([#1116](https://www.github.com/grain-lang/grain/issues/1116)) ([0f681ea](https://www.github.com/grain-lang/grain/commit/0f681ea140749395f3ce99a460f30778537183ac))
+
+
+### Bug Fixes
+
+* **graindoc:** Preserve indentation in Doc comments during trim ([#1119](https://www.github.com/grain-lang/grain/issues/1119)) ([b8a6d57](https://www.github.com/grain-lang/grain/commit/b8a6d57cce274bfbc2cc16c5b25215b042d4264c))
+* **grainfmt:** Remove parens around annotated types ([#1109](https://www.github.com/grain-lang/grain/issues/1109)) ([0ca66bd](https://www.github.com/grain-lang/grain/commit/0ca66bd43703826f86ef5b28b49d250af219fb0b))
+* **stdlib:** Fixed a memory leak in Buffer.addStringSlice. ([#1122](https://www.github.com/grain-lang/grain/issues/1122)) ([c4e1911](https://www.github.com/grain-lang/grain/commit/c4e19110bd9923e58a7953fcbcef18bf07f3efd6))
+* **stdlib:** Fixed length and byteLength for strings over 2GiB. ([#1126](https://www.github.com/grain-lang/grain/issues/1126)) ([08a9487](https://www.github.com/grain-lang/grain/commit/08a948709270a9aa4ac853c2887bc652c4734f36))
+* **stdlib:** Make Bytes.length handle sizes over 2GiB ([#1123](https://www.github.com/grain-lang/grain/issues/1123)) ([d7386eb](https://www.github.com/grain-lang/grain/commit/d7386eb36c32452d69a734b447015b4db23f1ac4))
+* **stdlib:** Remove intermediate resizes in Buffer.autogrow ([#1125](https://www.github.com/grain-lang/grain/issues/1125)) ([c1695d0](https://www.github.com/grain-lang/grain/commit/c1695d066ccd40b3118c5c870353addeef67bfc1))
+
+
+### Miscellaneous Chores
+
+* **compiler:** Remove decRefIgnoreZeros ([#1068](https://www.github.com/grain-lang/grain/issues/1068)) ([3ae8eaa](https://www.github.com/grain-lang/grain/commit/3ae8eaabad4467304c500c2f0cc9c40749d8513b))
+
 ### [0.4.7](https://www.github.com/grain-lang/grain/compare/grain-v0.4.6...grain-v0.4.7) (2022-01-17)
 
 

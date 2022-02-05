@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/grain-lang/grain/compare/cli-v0.4.7...cli-v0.5.0) (2022-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **graindoc:** Add `--current-version` flag, required for since/history attributes (#1116)
+* **compiler:** Add `--memory-base` flag (#1115)
+
+### Features
+
+* **compiler:** Add `--memory-base` flag ([#1115](https://www.github.com/grain-lang/grain/issues/1115)) ([0680826](https://www.github.com/grain-lang/grain/commit/068082663c4387c3ab54c052869e9b9a06b87e26))
+* **graindoc:** Add `--current-version` flag, required for since/history attributes ([#1116](https://www.github.com/grain-lang/grain/issues/1116)) ([0f681ea](https://www.github.com/grain-lang/grain/commit/0f681ea140749395f3ce99a460f30778537183ac))
+
+
+### Dependencies
+
+* The following workspace dependencies were updated
+  * dependencies
+    * @grain/js-runner bumped from ^0.4.0 to ^0.5.0
+    * @grain/stdlib bumped from ^0.4.6 to ^0.5.0
+
 ### [0.4.7](https://www.github.com/grain-lang/grain/compare/cli-v0.4.6...cli-v0.4.7) (2022-01-17)
 
 

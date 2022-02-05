@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/grain-lang/grain/compare/@grain/compiler-v0.4.6...@grain/compiler-v0.5.0) (2022-02-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* **graindoc:** Add `--current-version` flag, required for since/history attributes (#1116)
+* **compiler:** Remove decRefIgnoreZeros (#1068)
+* **compiler:** Add `--memory-base` flag (#1115)
+* **compiler:** Re-implement Grain parser (#1033)
+
+### Features
+
+* **compiler:** Add `--memory-base` flag ([#1115](https://www.github.com/grain-lang/grain/issues/1115)) ([0680826](https://www.github.com/grain-lang/grain/commit/068082663c4387c3ab54c052869e9b9a06b87e26))
+* **compiler:** Re-implement Grain parser ([#1033](https://www.github.com/grain-lang/grain/issues/1033)) ([9dc3c96](https://www.github.com/grain-lang/grain/commit/9dc3c96f87a0b2affe9db36e1b03360d198f79f1))
+* **compiler:** Use symbol for equals sign ([#1128](https://www.github.com/grain-lang/grain/issues/1128)) ([3d7fc57](https://www.github.com/grain-lang/grain/commit/3d7fc5742ad3016d60e14112fdd68de02fc147f1))
+* **graindoc:** Add `--current-version` flag, required for since/history attributes ([#1116](https://www.github.com/grain-lang/grain/issues/1116)) ([0f681ea](https://www.github.com/grain-lang/grain/commit/0f681ea140749395f3ce99a460f30778537183ac))
+
+
+### Bug Fixes
+
+* **graindoc:** Preserve indentation in Doc comments during trim ([#1119](https://www.github.com/grain-lang/grain/issues/1119)) ([b8a6d57](https://www.github.com/grain-lang/grain/commit/b8a6d57cce274bfbc2cc16c5b25215b042d4264c))
+* **grainfmt:** Remove parens around annotated types ([#1109](https://www.github.com/grain-lang/grain/issues/1109)) ([0ca66bd](https://www.github.com/grain-lang/grain/commit/0ca66bd43703826f86ef5b28b49d250af219fb0b))
+
+
+### Miscellaneous Chores
+
+* **compiler:** Remove decRefIgnoreZeros ([#1068](https://www.github.com/grain-lang/grain/issues/1068)) ([3ae8eaa](https://www.github.com/grain-lang/grain/commit/3ae8eaabad4467304c500c2f0cc9c40749d8513b))
+
 ### [0.4.6](https://www.github.com/grain-lang/grain/compare/@grain/compiler-v0.4.5...@grain/compiler-v0.4.6) (2022-01-17)
 
 
