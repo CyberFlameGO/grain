@@ -242,6 +242,12 @@ let rec transl_imm =
       (Imm.id(~loc, ~env, tmp), [BLet(tmp, cexpr)]);
     }
   | TExpNull => (Imm.const(~loc, ~env, Const_bool(false)), [])
+  | TExpPrim0(op) =>
+    let tmp = gensym("prim0");
+    (
+      Imm.id(~loc, ~env, tmp),
+      [BLet(tmp, Comp.prim0(~loc, ~env, ~allocation_type, op))],
+    );
   | TExpPrim1(op, arg) =>
     let tmp = gensym("unary");
     let (arg_imm, arg_setup) = transl_imm(arg);
@@ -429,6 +435,8 @@ let rec transl_imm =
   | TExpApp({exp_desc: TExpIdent(_, _, {val_kind: TValPrim(prim)})}, args) =>
     Translprim.(
       switch (PrimMap.find_opt(prim_map, prim), args) {
+      | (Some(Primitive0(prim)), []) =>
+        transl_imm({...e, exp_desc: TExpPrim0(prim)})
       | (Some(Primitive1(prim)), [arg]) =>
         transl_imm({...e, exp_desc: TExpPrim1(prim, arg)})
       | (Some(Primitive2(prim)), [arg1, arg2]) =>
@@ -802,6 +810,10 @@ and transl_comp_expression =
     : (comp_expression, list(anf_bind)) => {
   let allocation_type = get_allocation_type(env, exp_type);
   switch (exp_desc) {
+  | TExpPrim0(op) => (
+      Comp.prim0(~loc, ~attributes, ~allocation_type, ~env, op),
+      [],
+    )
   | TExpPrim1(op, arg) =>
     let (arg_imm, arg_setup) = transl_imm(arg);
     (
@@ -1073,6 +1085,8 @@ and transl_comp_expression =
   | TExpApp({exp_desc: TExpIdent(_, _, {val_kind: TValPrim(prim)})}, args) =>
     Translprim.(
       switch (PrimMap.find_opt(prim_map, prim), args) {
+      | (Some(Primitive0(prim)), []) =>
+        transl_comp_expression({...e, exp_desc: TExpPrim0(prim)})
       | (Some(Primitive1(prim)), [arg]) =>
         transl_comp_expression({...e, exp_desc: TExpPrim1(prim, arg)})
       | (Some(Primitive2(prim)), [arg1, arg2]) =>

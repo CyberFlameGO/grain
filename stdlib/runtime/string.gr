@@ -22,6 +22,7 @@ import WasmF64 from "runtime/unsafe/wasmf64"
 import Memory from "runtime/unsafe/memory"
 import Tags from "runtime/unsafe/tags"
 import NumberUtils from "runtime/numberUtils"
+import Debug from "runtime/debug"
 
 import { allocateString, allocateArray } from "runtime/dataStructures"
 
@@ -626,7 +627,9 @@ let rec heapValueToString = (ptr, extraIndents, toplevel) => {
 }, toStringHelp = (grainValue, extraIndents, toplevel) => {
   if ((grainValue & 1n) != 0n) {
     // Simple (unboxed) numbers
-    NumberUtils.itoa32(grainValue >> 1n, 10n)
+    let s = NumberUtils.itoa32(grainValue >> 1n, 10n)
+    Debug.debug(s)
+    s
   } else if ((grainValue & 7n) == Tags._GRAIN_GENERIC_HEAP_TAG_TYPE) {
     heapValueToString(grainValue, extraIndents, toplevel)
   } else if (grainValue == WasmI32.fromGrain(true)) {
